@@ -36,8 +36,8 @@ auto getFcn(const string&) -> string::size_type(*)(const string&, const string&)
 string::size_type (*getFcn(const string&))(const string&, const string&);
 
 // 定义getFcn
-decltype(sumLength)* 
-getFcn(const string &fetch)
+decltype(sumLength)* 	// sumLength函数返回类型的指针类型
+getFcn(const string &fetch)	// 该函数返回的是上述类型
 {
 	if (fetch == "sum")
 		return sumLength;
