@@ -1,0 +1,10 @@
+# 这里实现了从文件中读取输入而不是从终端读取
+echo "add:" && ./add.out < data/add 
+echo "add_item:" && ./add_item.out < data/add_item
+echo "add_item2:" && ./add_item2.out < data/add_item
+# echo "avg_price:" && ./avg_price < data/book_sales
+echo "item_io:" && ./item_io.out < data/book_sales 
+echo "occurs:" && ./occurs.out < data/occurs
+echo "mysum:" && ./mysum.out < data/mysum
+
+# ../noinput for_ex forcount main_only whilecount
