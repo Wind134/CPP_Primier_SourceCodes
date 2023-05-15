@@ -1,3 +1,4 @@
+/* 这是一个管理屏幕窗口的类，我们看看他实现了什么功能 */
 #ifndef WINDOW_MGR
 #define WINDOW_MGR
 
@@ -26,7 +27,7 @@ public:
 	void resize(Screen::pos r, Screen::pos c, ScreenIndex i);
 private:
 	// Screens this Window_mgr is tracking
-	// by default, a Window_mgr has one standard sized blank Screen 
+	// 默认情况下，初始化为仅有一个Screen的vector 
 	std::vector<Screen> screens{Screen(24, 80, ' ')};
 };
 
@@ -40,7 +41,7 @@ Window_mgr::addScreen(const Screen &s)
 }
 
 inline
-void Window_mgr::clear(ScreenIndex i)
+void Window_mgr::clear(ScreenIndex i)	// 清空第I个Screen
 {
 	// s is a reference to the Screen we want to clear
 	Screen &s = screens[i];
