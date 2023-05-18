@@ -55,7 +55,8 @@ int main()
 
 	
 	
-	// key为map类型的迭代器，value为bool类型
+	// key为map类型的迭代器，value为bool类型，以下这个定义一般也是map的insert或者emplace
+	// 返回的类型：first成员为一个迭代器指针，second成员为一个bool类型的变量；
 	pair<map<string, size_t>::iterator, bool> insert_ret;
 
 	// 如果Anna不在word_count中, 插入这个词，并且对应的值为1
@@ -63,7 +64,8 @@ int main()
 	// insert插入不成功，返回的迭代器指向已存在的元素
 	insert_ret = word_count.insert({"Anna", 1});
 	
-	// 如果在word_count中存在，默认的second是0，这时候
+	// 如果插入失败，那么insert返回的first成员指向那个已存在的map的迭代器
+	// second成员返回一个bool类型的变量，指示插入是否成功
 	if (insert_ret.second == false)    	// Anna was already in the map
 	    insert_ret.first->second++;    	// 自增当前map下的size_t类型元素的值
 	cout << "Output: "<< word_count["Anna"] << endl;	// 输出3
