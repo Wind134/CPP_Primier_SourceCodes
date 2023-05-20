@@ -75,6 +75,7 @@
         "charconv": "cpp",
         "format": "cpp",
         "span": "cpp",
-        "stdfloat": "cpp"
+        "stdfloat": "cpp",
+        "*.inc": "cpp"
     }
 }
