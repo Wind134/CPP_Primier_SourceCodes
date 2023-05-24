@@ -1,4 +1,7 @@
-
+/* 
+详细介绍了基类与派生类之间的使用，把这部分弄懂了，派生类与基类
+之间的转换与继承也差不多有一个清晰的轮廓了
+*/
 #include "Query.h"
 #include "TextQuery.h"
 #include <string>
