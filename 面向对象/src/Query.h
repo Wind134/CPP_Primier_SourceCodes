@@ -14,7 +14,7 @@
 
 // 抽象基类(定义了纯虚函数)作为具体查询类型的基类，其中所有成员都是私有的。
 class Query_base {
-    friend class Query; // 友元类，做接口，可以访问Query_base的所有数据  
+    friend class Query; // 友元类Query，做接口，可以访问Query_base的所有数据  
 protected:
     using line_no = TextQuery::line_no; // 在eval函数中会被使用
     virtual ~Query_base() = default;    // 析构函数，设定为虚函数，以便在资源释放时正确调用派生类自身的析构函数版本

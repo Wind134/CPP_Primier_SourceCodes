@@ -15,7 +15,7 @@ using std::ifstream;
 #include <stdexcept>
 using std::runtime_error;
 
-// 读取文件并通过该文件返回一个一个TextQuery对象
+// 读取文件并通过该文件返回一个一个TextQuery对象，这个并不是TextQuery类的函数，因此单独放在一个源文件中
 TextQuery get_file(int argc, char **argv)
 {
     // get a file to read from which user will query words
