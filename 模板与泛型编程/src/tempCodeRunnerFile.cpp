@@ -1,0 +1,1 @@
+Blob<string> sa1, sa2; // instantiation will appear elsewhere
