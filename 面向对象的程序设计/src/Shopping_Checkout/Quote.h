@@ -1,7 +1,7 @@
 /*
  * Quote定义的是一个书本类
- * 
- *  
+ * 基于Quote定义了派生类Disc_quote
+ * 基于Disc_quote又定义了一些具体的折扣策略类 
  */ 
 
 #ifndef QUOTE_H
