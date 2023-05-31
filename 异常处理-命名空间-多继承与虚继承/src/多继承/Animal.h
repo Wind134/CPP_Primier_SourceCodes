@@ -1,16 +1,16 @@
 /*
- * 这是一个继承关系的学习
+ * 这是一个多继承关系的学习
 */ 
 
 #include <string>
 #include <iostream>
 #include <algorithm>
 
-class Endangered {
+class Endangered {  // 这是一个为濒危动物设计的类
 public:
-    virtual ~Endangered() 
+    virtual ~Endangered()   // 虚析构函数
 		{ std::cout << "Endangered dtor" << std::endl; }
-    virtual std::ostream& print() const
+    virtual std::ostream& print() const // 下面是各个函数执行显示
 		{ return std::cout << "Endangered::print" << std::endl; }
     virtual void highlight() const
 		{ std::cout << "Endangered::highlight" << std::endl; }
@@ -20,7 +20,7 @@ public:
 };
 
 class ZooAnimal;
-extern std::ostream&
+extern std::ostream&  // 作用于全局
 operator<<(std::ostream&, const ZooAnimal&);
 
 class ZooAnimal {
@@ -40,9 +40,9 @@ public:
 	virtual double max_weight() const
 		{ std::cout << "Animal::max_weight" << std::endl; return 0;}
 
-    // 访问受保护成员的函数
-    std::string name() const { return nm; }
-    std::string family_name() const { return fam_name; }
+    // 访问受保护成员的函数，一个接口
+    std::string name() const { return nm; } // 动物类型名
+    std::string family_name() const { return fam_name; }  // 该动物又属于什么科 
     bool onExhibit() const { return exhibit_stat; }
     // . . .
 protected:
@@ -86,7 +86,7 @@ public:
     Panda() = default;
     Panda(std::string name, bool onExhibit=true);
     virtual ~Panda()
-		{ std::cout << "Panda dtor" << std::endl; }
+		{ std::cout << "Panda dtor with" << std::endl; }
     virtual std::ostream& print() const
 		{ return std::cout << "Panda::print" << std::endl; }
     void highlight()
@@ -100,7 +100,7 @@ public:
 };
 
 inline
-Panda::Panda(std::string name, bool onExhibit)
+Panda::Panda(std::string name, bool onExhibit)  // 构造函数部分交给他继承的基类Bear来处理
       : Bear(name, onExhibit, "Panda") { }
 
 inline

@@ -1,5 +1,6 @@
 /*
  * 该头文件包含了枚举类型enum，枚举类型是一种用户自定义的类型，用于表示一组具有离散取值的常量；
+ * 同时讲述了虚继承的有关机制
 */ 
 
 #include <string>
@@ -53,13 +54,14 @@ protected:
 private:
 };
 
-// the order of the keywords public and virtual is not significant
+// public和virtual关键字的顺序并不重要
+// 虚继承，后续所有继承自Raccoon的类都是共享虚基类
 class Raccoon : public virtual ZooAnimal {
 public:
     Raccoon() = default;
     Raccoon(std::string name, bool onExhibit=true);
 
-    virtual std::ostream& print(std::ostream&) const
+    virtual std::ostream& print(std::ostream&) const  // 定义了一个虚函数
 		{ return  std::cout << "Raccoon::print" << std::endl; }
 
     bool pettable() const {return pettable_flag;  }
@@ -71,7 +73,7 @@ protected:
     // . . .
 };
 
-class Bear : virtual public ZooAnimal {
+class Bear : virtual public ZooAnimal { // 同样是虚继承，因此Bear与Racoon共享虚基类ZooAnimal
 public:
     // when the most derived class
     Bear(std::string name, bool onExhibit=true);
@@ -80,7 +82,7 @@ protected:
     Bear() : dance_flag(two_left_feet) { }
 
 public:
-    enum DanceType { two_left_feet, macarena, fandango };
+    enum DanceType { two_left_feet, macarena, fandango }; // 定义了一个枚举类型
 
     virtual std::ostream &print(std::ostream&) const
 		{ return  std::cout << "Bear::print" << std::endl; }
@@ -115,13 +117,13 @@ protected:
 };
 
 
-Bear::Bear(std::string name, bool onExhibit):
+Bear::Bear(std::string name, bool onExhibit): // 在派生类的构造中完成基类的构造函数
          ZooAnimal(name, onExhibit, "Bear") { }
-Raccoon::Raccoon(std::string name, bool onExhibit)
+Raccoon::Raccoon(std::string name, bool onExhibit)  // 也是在派生类的构造中完成基类的构造函数
        : ZooAnimal(name, onExhibit, "Raccoon") { }
 
-Panda::Panda(std::string name, bool onExhibit)
-      : ZooAnimal(name, onExhibit, "Panda"),
+Panda::Panda(std::string name, bool onExhibit)  // 同样是在派生类的构造函数中完成基类的构造函数
+      : ZooAnimal(name, onExhibit, "Panda"),    // 因为上面三个构造函数都是自定义的构造而非合成的构造
         Bear(name, onExhibit),
         Raccoon(name, onExhibit),
         Endangered(Endangered::critical),
