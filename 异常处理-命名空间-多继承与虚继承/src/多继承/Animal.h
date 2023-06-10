@@ -6,31 +6,31 @@
 #include <iostream>
 #include <algorithm>
 
-class Endangered {  // 这是一个为濒危动物设计的类
+class EndangeredAnimal {  // 这是一个为濒危动物设计的类
 public:
-    virtual ~Endangered()   // 虚析构函数
-		{ std::cout << "Endangered dtor" << std::endl; }
+    virtual ~EndangeredAnimal()   // 虚析构函数
+		  { std::cout << "EndangeredAnimal dtor" << std::endl; }
     virtual std::ostream& print() const // 下面是各个函数执行显示
-		{ return std::cout << "Endangered::print" << std::endl; }
+		  { return std::cout << "EndangeredAnimal::print" << std::endl; }
     virtual void highlight() const
-		{ std::cout << "Endangered::highlight" << std::endl; }
-	virtual double max_weight() const
-		{ std::cout << "Endangered::max_weight" << std::endl; return 0; }
+		  { std::cout << "EndangeredAnimal::highlight" << std::endl; }
+	  virtual double max_weight() const
+		  { std::cout << "EndangeredAnimal::max_weight" << std::endl; return 0; }
     // . . .
 };
 
-class ZooAnimal;
+class Animal;
 extern std::ostream&  // 作用于全局
-operator<<(std::ostream&, const ZooAnimal&);
+operator<<(std::ostream&, const Animal&);
 
-class ZooAnimal {
+class Animal {
 public:
-    ZooAnimal() = default;
-    ZooAnimal(std::string animal, bool exhibit,
+    Animal() = default;
+    Animal(std::string animal, bool exhibit,
               std::string family): nm(animal), 
                                    exhibit_stat(exhibit), 
                                    fam_name(family) { } 
-    virtual ~ZooAnimal()
+    virtual ~Animal()
 		{ std::cout << "Animal dtor" << std::endl; }
 
     virtual std::ostream& print() const
@@ -58,12 +58,12 @@ constexpr DanceType two_left_feet = 0;
 constexpr DanceType Astaire = 1;
 constexpr DanceType Rogers = 42;
 
-class Bear : public ZooAnimal {
+class Bear : public Animal {
 public:
     Bear() = default;
     Bear(std::string name, bool onExhibit=true, 
          std::string family = "Bear"):
-                         ZooAnimal(name, onExhibit, family),
+                         Animal(name, onExhibit, family),
                          dancetype(two_left_feet) { }
 
     virtual std::ostream &print() const
@@ -81,7 +81,7 @@ private:
     DanceType   dancetype = Rogers;
 };
 
-class Panda : public Bear, public Endangered {  // 多继承
+class Panda : public Bear, public EndangeredAnimal {  // 多继承
 public:
     Panda() = default;
     Panda(std::string name, bool onExhibit=true);
@@ -106,8 +106,8 @@ Panda::Panda(std::string name, bool onExhibit)  // 构造函数部分交给他�
 inline
 double Panda::max_weight() const
 {
-    return std::max(ZooAnimal::max_weight(), 
-	                Endangered::max_weight());
+    return std::max(Animal::max_weight(), 
+	                EndangeredAnimal::max_weight());
 }
 
 class PolarBear : public Bear { /* . . . */ };
